@@ -38,12 +38,12 @@ apiClient.interceptors.request.use(
 
 let failedQueue: Array<{
   resolve: (token: string) => void;
-  reject: (error: any) => void;
+  reject: (error: unknown) => void;
 }> = [];
 let isRefreshing = false;
 
 // Hàm xử lý hàng đợi sau khi refresh token thành công hoặc thất bại
-const processQueue = (error: any, token: string | null = null) => {
+const processQueue = (error: unknown, token: string | null = null) => {
   failedQueue.forEach((p) => {
     if (token) p.resolve(token);
     else p.reject(error);

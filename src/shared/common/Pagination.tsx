@@ -18,8 +18,8 @@ interface PaginationProps {
 }
 
 
-const Pagination = ({ meta, onPageChange, className }: PaginationProps) => {
-    const { currentPage, totalPages, hasPreviousPage, hasNextPage } = meta;
+const Pagination = ({ meta, onPageChange }: PaginationProps) => {
+    const { currentPage, totalPages, hasNextPage } = meta;
 
     const getPageNumbers = (): (number | "...")[] => {
         const pages: (number | "...")[] = [];

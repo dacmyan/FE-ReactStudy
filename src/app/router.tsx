@@ -9,13 +9,21 @@ import { ProtectedRoute } from "@/shared/common/guards/ProtectedRoute";
 import Unauthorized from "@/shared/pages/Unauthorized";
 import ProfilePage from "@/features/auth/pages/ProfilePage";
 import NotFoundPage from "@/shared/pages/NotFoundPage";
-import AdminLayout from "@/shared/layouts/AdminLayout";
-import DashBoardPage from "@/shared/pages/DashBoardPage";
-import ManageRitualList from "@/features/ritual/pages/ManageRitualList";
-import ManageRitualCreate from "@/features/ritual/pages/ManageRitualCreate";
-import ManageRitualEdit from "@/features/ritual/pages/ManageRitualEdit";
-import UserManagementPage from "@/features/admin/pages/UserManagementPage";
 import RitualCatalogPage from "@/features/ritual/pages/RitualCatalogPage";
+import { lazy, Suspense, type ReactNode } from "react";
+
+const AdminLayout = lazy(() => import("@/shared/layouts/AdminLayout"));
+// const DashboardPage = lazy(() => import("@/shared/pages/DashBoardPage"));
+const ManageRitualList = lazy(() => import("@/features/ritual/pages/ManageRitualList"));
+const ManageRitualCreate = lazy(() => import("@/features/ritual/pages/ManageRitualCreate"));
+const ManageRitualEdit = lazy(() => import("@/features/ritual/pages/ManageRitualEdit"));
+const UserManagementPage = lazy(() => import("@/features/admin/pages/UserManagementPage"));
+
+const withSupense = (children: ReactNode) => (
+  <Suspense fallback={<p>loading...</p>}>
+    {children}
+  </Suspense>
+)
 
 export const router = createBrowserRouter([
   {
@@ -59,15 +67,14 @@ export const router = createBrowserRouter([
         path: "admin",
         element: (
           <ProtectedRoute allowedRoles={["admin"]}>
-            {(<AdminLayout />)}
+            {withSupense((<AdminLayout />))}
           </ProtectedRoute>
         ),
         children: [
-          { index: true, element: <DashBoardPage /> },
-          { path: "rituals", element: <ManageRitualList /> },
-          { path: "rituals/create", element: <ManageRitualCreate /> },
-          { path: "rituals/:id/edit", element: <ManageRitualEdit /> },
-          { path: "users", element: <UserManagementPage /> },
+          { path: "rituals", element: withSupense(<ManageRitualList />) },
+          { path: "rituals/create", element: withSupense(<ManageRitualCreate />) },
+          { path: "rituals/:id/edit", element: withSupense(<ManageRitualEdit />) },
+          { path: "users", element: withSupense(<UserManagementPage />) },
 
         ]
       }

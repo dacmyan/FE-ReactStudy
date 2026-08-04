@@ -63,11 +63,11 @@ export const useRegisterMutation = () => {
       navigate("/login");
     },
 
-    onError: (error: any) => {
-      toast.error(
-        error.response?.data?.message || "Đăng ký thất bại. Vui lòng thử lại."
-      );
-    },
+    // onError: (error: any) => {
+    //   toast.error(
+    //     error.response?.data?.message || "Đăng ký thất bại. Vui lòng thử lại."
+    //   );
+    // },
 
     onSettled: () => {
       // Có thể dùng để reset form hoặc thực hiện các hành động khác sau khi mutation hoàn thành (thành công hoặc thất bại)
