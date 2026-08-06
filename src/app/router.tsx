@@ -21,7 +21,7 @@ const UserManagementPage = lazy(() => import("@/features/admin/pages/UserManagem
 const withSupense = (children: ReactNode) => (
   <Suspense fallback={<p>loading...</p>}>
     {children}
-  </Suspensebbb>
+  </Suspense>
 )
 
 export const router = createBrowserRouter([
