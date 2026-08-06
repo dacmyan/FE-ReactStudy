@@ -18,7 +18,7 @@ const ManageRitualList = lazy(() => import("@/features/ritual/pages/ManageRitual
 const ManageRitualCreate = lazy(() => import("@/features/ritual/pages/ManageRitualCreate"));
 const ManageRitualEdit = lazy(() => import("@/features/ritual/pages/ManageRitualEdit"));
 const UserManagementPage = lazy(() => import("@/features/admin/pages/UserManagementPage"));
-
+console.log("ngon")
 const withSupense = (children: ReactNode) => (
   <Suspense fallback={<p>loading...</p>}>
     {children}
