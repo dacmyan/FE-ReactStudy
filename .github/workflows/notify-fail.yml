@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Send Discord notification
         run: |
-          if [ -z "$DISCORD WEBHOOK URL" ]; then
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
             echo "DISCORD_WEBHOOK_URL is empty. Skip notify step."
             exit 0
           fi
