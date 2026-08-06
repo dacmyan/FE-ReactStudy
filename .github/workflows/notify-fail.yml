@@ -26,7 +26,7 @@ jobs:
           payload=$(cat <<PAYLOAD
           {
             "username": "CI Bot",
-            "content": "CI workflow failed\\nRepo: ${REPO}\\nBranch: ${BRANCH}\\nTriggered by: {ACTOR}\\nLogs: ${LOG_URL}"
+            "content": "CI workflow failed\\nRepo: ${REPO}\\nBranch: ${BRANCH}\\nTriggered by: ${ACTOR}\\nLogs: ${LOG_URL}"
           }
           PAYLOAD
           )
